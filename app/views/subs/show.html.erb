@@ -1,0 +1,30 @@
+<h1><%= @sub.title %> </h1>
+
+<br>
+
+<h2>Description</h2>
+
+<p> <%= @sub.description %> </p>
+
+<br>
+
+<% if current_user && current_user.id == @sub.user_id %>
+  <%= link_to "Edit Sub", edit_sub_url %>
+<% end %>
+<br>
+
+<h2>Posts</h2>
+<ul>
+
+<% @sub.posts.each do |post| %>
+  <li><%= link_to "#{post.title}", post_url(post) %></li>
+<% end %>
+</ul>
+
+<br>
+
+<%= link_to "Add New Post", new_sub_post_url(@sub) %>
+
+<br>
+
+<%= link_to "Back to All Subs", subs_url %>

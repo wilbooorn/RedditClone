@@ -1,13 +1,11 @@
 Rails.application.routes.draw do
-  get 'sessions/new'
 
-  get 'sessions/create'
-
-  get 'sessions/destroy'
-
-  get 'user/new'
-
-  get 'user/create'
+  resources :users, only: [:new, :create]
+  resource :session, only: [:new, :create, :destroy]
+  resources :subs, except: [:destroy] do
+    resources :posts, only: [:create, :new]
+  end
+  resources :posts, except: [:index, :create, :new]
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

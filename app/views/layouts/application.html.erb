@@ -9,6 +9,23 @@
   </head>
 
   <body>
+    <% unless current_user.nil? %>
+      <%= "Hello #{current_user.username}" %>
+    <% end %>
+
+    <br><br>
+
+    <% if flash.now[:errors] %>
+      <%= flash.now[:errors].join("\n") %>
+    <% end %>
+
     <%= yield %>
   </body>
+
+  <footer>
+    <% if current_user %>
+      <%= button_to "Sign Out", "/session", method: :delete %>
+    <% end %>
+
+  </footer>
 </html>
