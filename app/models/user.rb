@@ -7,6 +7,7 @@ class User < ApplicationRecord
     class_name: :Sub
 
   has_many :posts
+  has_many :comments
 
   validates :username, :password_digest, :session_token, presence: true
   validates :password, length: { minimum: 6, allow_nil: true }
